@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Product.Api.Domain;
 using System.Net;
 using System.Net.Http.Json;
 

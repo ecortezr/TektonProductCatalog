@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Product.Api.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,9 @@ namespace Product.Api.Tests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            base.ConfigureWebHost(builder);
+            // base.ConfigureWebHost(builder);
 
+            builder.UseEnvironment("Testing");
             builder.ConfigureTestServices(services =>
             {
                 services.AddDbContextFactory<ProductDbContext>(

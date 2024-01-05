@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Product.Api.Domain;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
+using System.Threading;
 
 namespace Product.Api.Controllers
 {
@@ -18,20 +21,30 @@ namespace Product.Api.Controllers
         }
 
         /// <summary>
+        ///     Get products
+        /// </summary>
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [HttpGet(Name = "GetProducts")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _dbContext.Products.ToListAsync());
+        }
+
+        /// <summary>
         ///     Add a new product
         /// </summary>
         /// <param name="product"></param>
         [SwaggerResponse((int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [HttpPost(Name = "CreateProduct")]
-        public async Task<IActionResult> Create([FromBody] Product product)
+        public async Task<IActionResult> Create([FromBody] Domain.Product product)
         {
             _logger.LogWarning("Getting current Fuel Rate value from Deparment of Energy");
 
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync();
 
-            return Created("product", new Product() { Name = "Test 1", Price = 12 });
+            return Created("product", product);
         }
     }
 }
