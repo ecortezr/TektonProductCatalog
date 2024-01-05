@@ -13,7 +13,7 @@ namespace Product.Api.Tests
 {
     public class ProductApiFactory : WebApplicationFactory<IApiAssemblyMarker>
     {
-        public ProductDbContext CreateProductDbContextContext() {
+        public ProductDbContext CreateProductDbContext() {
             var db = Services.GetRequiredService<IDbContextFactory<ProductDbContext>>().CreateDbContext();
             db.Database.EnsureCreated();
 

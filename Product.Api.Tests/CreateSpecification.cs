@@ -15,7 +15,7 @@ namespace Product.Api.Tests
         {
             _api = new ProductApiFactory();
             _httpClient = _api.CreateClient();
-            _dbContext = _api.CreateProductDbContextContext();
+            _dbContext = _api.CreateProductDbContext();
         }
 
         [Fact]
