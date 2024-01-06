@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Product.Api.Domain;
+using Product.Api.Infrastructure;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading;
@@ -39,8 +39,6 @@ namespace Product.Api.Controllers
         [HttpPost(Name = "CreateProduct")]
         public async Task<IActionResult> Create([FromBody] Domain.Product product)
         {
-            _logger.LogWarning("Getting current Fuel Rate value from Deparment of Energy");
-
             _dbContext.Products.Add(product);
             await _dbContext.SaveChangesAsync();
 

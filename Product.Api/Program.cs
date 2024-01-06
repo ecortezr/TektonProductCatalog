@@ -1,6 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Product.Api.Domain;
+using Product.Api.Infrastructure;
+using Product.Api.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,11 +14,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Adding SqLite
 var connection = new SqliteConnection("DataSource=:memory:");
 connection.Open();
 builder.Services.AddDbContext<ProductDbContext>(options =>
     options.UseSqlite(connection)
 );
+
+// Adding FluentValidation
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>(); 
 
 var app = builder.Build();
 

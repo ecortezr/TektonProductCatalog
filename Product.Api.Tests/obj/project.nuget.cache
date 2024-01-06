@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ROlb3V47B/2k2JUfONQGe1qTrXs4RP9ZsgvVh+EXZZx5ybGiwXRn4XC1QxQrnFJ3h5u44n74oJ7ZJq+wX+/eKA==",
+  "dgSpecHash": "8GpbVOhs/Fsgvkqp0nGgoADps6jGavunZy0ZnmTqVx7k1gGi5POh+YMAPTFpG9SkUiGAb6j57huLo44Yi4O/Ng==",
   "success": true,
   "projectFilePath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Tests\\Product.Api.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\6.0.25\\microsoft.aspnetcore.mvc.testing.6.0.25.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.aspnetcore.testhost\\6.0.25\\microsoft.aspnetcore.testhost.6.0.25.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

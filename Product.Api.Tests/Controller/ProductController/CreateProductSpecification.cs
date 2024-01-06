@@ -1,22 +1,34 @@
 using Microsoft.EntityFrameworkCore;
-using Product.Api.Domain;
+using Product.Api.Infrastructure;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Product.Api.Tests
+namespace Product.Api.Tests.Controller.ProductController
 {
-    public class CreateSpecification
+    public class CreateProductSpecification
     {
         private readonly ProductApiFactory _api;
         private readonly HttpClient _httpClient;
         private readonly ProductDbContext _dbContext;
         const string PRODUCT_NAME = "Test 1";
 
-        public CreateSpecification()
+        public CreateProductSpecification()
         {
             _api = new ProductApiFactory();
             _httpClient = _api.CreateClient();
             _dbContext = _api.CreateProductDbContext();
+        }
+
+        [Fact]
+        public async Task Should_Return_400_When_Send_Invalid_Product()
+        {
+
+            var response = await _httpClient.PostAsJsonAsync("/Product", new
+            {
+                Stock = 0
+            });
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         [Fact]

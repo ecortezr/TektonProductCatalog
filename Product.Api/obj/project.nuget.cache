@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "kyCnjSXC/UvgT46+t1Bn6cPXWlgfuS14PCgc/UVVz52XuFdwl3xHanO9T6vkJ90JIy1XOiv1j6NwZzIphfLibg==",
+  "dgSpecHash": "bafQN1ALkz+yTfJ/SCXIx5XkGk/R0nvmxlnMLL/QkkRQ3aMI19GCO9H4LgkFOIrR0FzOS7kQ+TKjhc23ZXgdjg==",
   "success": true,
   "projectFilePath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api\\Product.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.14\\microsoft.data.sqlite.core.7.0.14.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.14\\microsoft.entityframeworkcore.7.0.14.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.14\\microsoft.entityframeworkcore.abstractions.7.0.14.nupkg.sha512",

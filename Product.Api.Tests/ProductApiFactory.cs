@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Product.Api.Domain;
+using Product.Api.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
