@@ -443,3 +443,5 @@ C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\runtimes\b
 C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\FluentValidation.dll
 C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\MediatR.dll
+C:\backup\dev\TektonProductCatalog\Product.Api.Tests\bin\Debug\net6.0\MediatR.Contracts.dll

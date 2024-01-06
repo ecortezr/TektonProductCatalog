@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8GpbVOhs/Fsgvkqp0nGgoADps6jGavunZy0ZnmTqVx7k1gGi5POh+YMAPTFpG9SkUiGAb6j57huLo44Yi4O/Ng==",
+  "dgSpecHash": "VxMFWfcS9CuVMOCdT6Jm/RXaqWgcr0Zs5qyyTyTRBT7XBo570ojKsTKeFpXbjtN0qhZiFArcOpf+WhJAOSI+Zw==",
   "success": true,
   "projectFilePath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Tests\\Product.Api.Tests.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\6.0.25\\microsoft.aspnetcore.mvc.testing.6.0.25.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.aspnetcore.testhost\\6.0.25\\microsoft.aspnetcore.testhost.6.0.25.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",
@@ -32,7 +34,7 @@
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.configuration.json\\6.0.0\\microsoft.extensions.configuration.json.6.0.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.configuration.usersecrets\\6.0.1\\microsoft.extensions.configuration.usersecrets.6.0.1.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
-    "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.dependencymodel\\7.0.0\\microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\6.0.0\\microsoft.extensions.fileproviders.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\6.0.0\\microsoft.extensions.fileproviders.physical.6.0.0.nupkg.sha512",

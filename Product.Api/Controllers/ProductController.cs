@@ -1,9 +1,13 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Product.Api.Features.Products.Commands;
+using Product.Api.Features.Products.Queries;
 using Product.Api.Infrastructure;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Product.Api.Controllers
 {
@@ -11,38 +15,52 @@ namespace Product.Api.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
-        private readonly ProductDbContext _dbContext;
+        private readonly IMediator _mediator;
 
-        public ProductController(ProductDbContext dbContext, ILogger<ProductController> logger)
+        public ProductController(IMediator mediator)
         {
-            _dbContext = dbContext;
-            _logger = logger;
+            _mediator = mediator;
         }
 
         /// <summary>
-        ///     Get products
+        ///     List all products
         /// </summary>
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [HttpGet(Name = "GetProducts")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _dbContext.Products.ToListAsync());
+            return Ok(await _mediator.Send(new GetProductsQuery()));
         }
 
         /// <summary>
         ///     Add a new product
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="command"></param>
         [SwaggerResponse((int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [HttpPost(Name = "CreateProduct")]
-        public async Task<IActionResult> Create([FromBody] Domain.Product product)
+        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
         {
-            _dbContext.Products.Add(product);
-            await _dbContext.SaveChangesAsync();
+            var newProduct = await _mediator.Send(command);
 
-            return Created("product", product);
+            return Created("product", newProduct);
+        }
+
+        /// <summary>
+        ///     Update a product
+        /// </summary>
+        /// <param name="command"></param>
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        [HttpPut(Name = "UpdateProduct")]
+        public async Task<IActionResult> Update(UpdateProductCommand command)
+        {
+            var updatedProduct = await _mediator.Send(command);
+
+            return (updatedProduct is null)
+                ? NotFound()
+                : Ok(updatedProduct);
         }
     }
 }

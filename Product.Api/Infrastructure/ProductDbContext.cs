@@ -10,6 +10,6 @@ namespace Product.Api.Infrastructure
             Database.EnsureCreated();
         }
 
-        public DbSet<Domain.Product> Products => Set<Domain.Product>();
+        public DbSet<Domain.Entities.Product> Products => Set<Domain.Entities.Product>();
     }
 }

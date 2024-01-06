@@ -20,7 +20,7 @@ namespace Product.Api.Tests.Controller.ProductController
         }
 
         [Fact]
-        public async Task Should_Return_400_When_Send_Invalid_Product()
+        public async Task Should_Return_400_When_Send_Invalid_Product_Data()
         {
 
             var response = await _httpClient.PostAsJsonAsync("/Product", new
@@ -38,7 +38,10 @@ namespace Product.Api.Tests.Controller.ProductController
             var response = await _httpClient.PostAsJsonAsync("/Product", new
             {
                 Name = PRODUCT_NAME,
-                Price = 12
+                Description = "Test Description",
+                Status = 1,
+                Stock = 0,
+                Price = 10
             });
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -50,7 +53,10 @@ namespace Product.Api.Tests.Controller.ProductController
             var response = await _httpClient.PostAsJsonAsync("/Product", new
             {
                 Name = PRODUCT_NAME,
-                Price = 12
+                Description = "Test Description",
+                Status = 1,
+                Stock = 0,
+                Price = 10
             });
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);

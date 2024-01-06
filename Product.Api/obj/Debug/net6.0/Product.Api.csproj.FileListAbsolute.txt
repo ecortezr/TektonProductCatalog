@@ -78,3 +78,5 @@ C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\runtimes\browser
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\FluentValidation.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\MediatR.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\MediatR.Contracts.dll

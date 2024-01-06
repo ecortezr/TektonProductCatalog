@@ -4,6 +4,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Infrastructure;
 using Product.Api.Validators;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +25,10 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 // Adding FluentValidation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
-builder.Services.AddValidatorsFromAssemblyContaining<ProductValidator>(); 
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProductCommandValidator>();
+
+// Adding MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 
