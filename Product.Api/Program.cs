@@ -17,8 +17,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("logs/response-time-log-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-Log.Information("Starting web application");
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -52,8 +50,6 @@ builder.Host.UseSerilog();
 
 var app = builder.Build();
 
-app.UseSerilogRequestLogging();
-
 using (var scope = app.Services.CreateScope())
 {
     var cache = scope.ServiceProvider.GetRequiredService<IAppCache>();
@@ -72,6 +68,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSerilogRequestLogging();
 
 // Add middleware to log the time of every request/response
 // app.UseRequestCulture();
