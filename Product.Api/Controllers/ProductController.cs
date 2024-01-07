@@ -33,6 +33,20 @@ namespace Product.Api.Controllers
         }
 
         /// <summary>
+        ///     Get a product by Id
+        /// </summary>
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        [HttpGet("{ProductId:int}")]
+        public async Task<IActionResult> Get([FromRoute] int ProductId)
+        {
+            var product = await _mediator.Send(new GetProductQuery(ProductId));
+            return (product is null)
+                ? NotFound()
+                : Ok(product);
+        }
+
+        /// <summary>
         ///     Add a new product
         /// </summary>
         /// <param name="command"></param>

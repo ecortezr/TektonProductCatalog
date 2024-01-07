@@ -37,7 +37,7 @@ namespace Product.Api.Features.Products.Queries
     {
         public int ProductId { get; set; }
         public string Name { get; set; } = default!;
-        public string? Description { get; set; }
+        public string Description { get; set; } = default!;
         public string Status { get; set; } = default!;
         public int Stock { get; set; }
         public decimal Price { get; set; }

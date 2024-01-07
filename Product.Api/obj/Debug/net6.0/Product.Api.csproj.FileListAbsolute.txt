@@ -80,3 +80,5 @@ C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\FluentValidation
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\MediatR.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\MediatR.Contracts.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\LazyCache.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\LazyCache.AspNetCore.dll

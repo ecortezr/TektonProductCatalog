@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VxMFWfcS9CuVMOCdT6Jm/RXaqWgcr0Zs5qyyTyTRBT7XBo570ojKsTKeFpXbjtN0qhZiFArcOpf+WhJAOSI+Zw==",
+  "dgSpecHash": "Tygwyjtkx+JHFkWmeZx7aUU52DvY3W4P40Zo3k144WbePbEqsa5Y5CR6t7KAuRSRPZFP+Qp1sSqVmWdrxGIVIA==",
   "success": true,
   "projectFilePath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Tests\\Product.Api.Tests.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\lazycache\\2.4.0\\lazycache.2.4.0.nupkg.sha512",
+    "C:\\Users\\eddy.cortez\\.nuget\\packages\\lazycache.aspnetcore\\2.4.0\\lazycache.aspnetcore.2.4.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\eddy.cortez\\.nuget\\packages\\microsoft.aspnetcore.mvc.testing\\6.0.25\\microsoft.aspnetcore.mvc.testing.6.0.25.nupkg.sha512",

@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using LazyCache;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Infrastructure;
@@ -31,7 +32,22 @@ builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductCommandValidat
 // Adding MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+// Adding LazyCache
+builder.Services.AddLazyCache();
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var cache = scope.ServiceProvider.GetRequiredService<IAppCache>();
+    
+    var statusDictionary = new Dictionary<int, string>
+    {
+        { 1, "Active" },
+        { 0, "Inactive" }
+    };
+    cache.Add("product-status", statusDictionary, DateTimeOffset.Now.AddMinutes(5));
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
