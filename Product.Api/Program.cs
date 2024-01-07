@@ -5,7 +5,19 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Infrastructure;
 using Product.Api.Validators;
+using Serilog;
+using Serilog.Events;
 using System.Reflection;
+
+// Create Serilog logger
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Warning)
+    .WriteTo.Console()
+    .WriteTo.File("logs/response-time-log-.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+Log.Information("Starting web application");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +47,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Get
 // Adding LazyCache
 builder.Services.AddLazyCache();
 
+// Adding Serilog
+builder.Host.UseSerilog();
+
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -56,8 +73,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Add middleware to log the time of every request/response
+// app.UseRequestCulture();
+
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+Log.CloseAndFlush();

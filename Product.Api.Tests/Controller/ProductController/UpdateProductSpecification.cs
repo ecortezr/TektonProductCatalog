@@ -21,6 +21,18 @@ namespace Product.Api.Tests.Controller.ProductController
         }
 
         [Fact]
+        public async Task Should_Return_404_When_Product_Not_Found()
+        {
+            var response = await _httpClient.PutAsJsonAsync("/Product", new
+            {
+                ProductId = 10,
+                Name = PRODUCT_NAME
+            });
+
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
         public async Task Should_Return_200_When_Update_Product()
         {
             var addResponse = await _httpClient.PostAsJsonAsync("/Product", new
