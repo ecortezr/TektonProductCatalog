@@ -2,17 +2,8 @@ using System.Net;
 
 namespace Product.Api.Tests.Controller.ProductController
 {
-    public class GetProductsSpecification
+    public class GetProductsSpecification : BaseSpecification
     {
-        private readonly ProductApiFactory _api;
-        private readonly HttpClient _httpClient;
-
-        public GetProductsSpecification()
-        {
-            _api = new ProductApiFactory();
-            _httpClient = _api.CreateClient();
-        }
-
         [Fact]
         public async Task Should_Return_200_When_Is_Hitted()
         {

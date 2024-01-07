@@ -26,6 +26,7 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductCommandValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductCommandValidator>();
 
 // Adding MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
