@@ -2599,8 +2599,6 @@
       "MediatR >= 12.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.14",
-      "Microsoft.Extensions.Http.Polly >= 8.0.0",
-      "Newtonsoft.Json >= 13.0.3",
       "Product.Api.Domain >= 1.0.0",
       "Product.Api.Infrastructure >= 1.0.0",
       "Serilog.AspNetCore >= 8.0.0",
@@ -2678,14 +2676,6 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[7.0.14, )"
-          },
-          "Microsoft.Extensions.Http.Polly": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[13.0.3, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",
