@@ -1,11 +1,9 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
 
-namespace Product.Api.Features.Products.Commands
+namespace Product.Api.Domain.Features.Products.Commands
 {
-    public class UpdateBodyProductCommand : IRequest<Domain.Entities.Product>
+    public class UpdateBodyProductCommand : IRequest<Entities.Product>
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -18,7 +16,7 @@ namespace Product.Api.Features.Products.Commands
         public int ProductId { get; set; }
     }
 
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Domain.Entities.Product>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Entities.Product>
     {
         private readonly ProductDbContext _context;
 
@@ -27,7 +25,7 @@ namespace Product.Api.Features.Products.Commands
             _context = context;
         }
 
-        public async Task<Domain.Entities.Product?> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Entities.Product?> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
             var product = await _context.Products
                 .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);

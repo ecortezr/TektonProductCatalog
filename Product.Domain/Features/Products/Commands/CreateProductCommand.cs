@@ -1,10 +1,9 @@
 ﻿using MediatR;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
 
-namespace Product.Api.Features.Products.Commands
+namespace Product.Api.Domain.Features.Products.Commands
 {
-    public class CreateProductCommand : IRequest<Domain.Entities.Product>
+    public class CreateProductCommand : IRequest<Entities.Product>
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

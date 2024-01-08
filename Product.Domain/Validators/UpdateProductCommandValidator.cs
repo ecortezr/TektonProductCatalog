@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Product.Api.Features.Products.Commands;
+using Product.Api.Domain.Features.Products.Commands;
 
-namespace Product.Api.Validators
+namespace Product.Api.Domain.Validators
 {
     public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
     {

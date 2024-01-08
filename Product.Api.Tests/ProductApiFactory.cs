@@ -5,8 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
-using Product.Api.Infrastructure;
-using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Domain.Repositories;
 using Product.Api.Infrastructure.HttpClient.MockApi;
 using System.Net;
 

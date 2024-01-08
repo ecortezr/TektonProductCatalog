@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Product.Api.Features.Products.Commands;
-using Product.Api.Features.Products.Queries;
+using Product.Api.Domain.Features.Products.Commands;
+using Product.Api.Domain.Features.Products.Queries;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 

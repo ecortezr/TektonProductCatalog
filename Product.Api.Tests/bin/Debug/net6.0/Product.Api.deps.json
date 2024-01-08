@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.14",
           "Microsoft.Extensions.Http.Polly": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
+          "Product.Domain": "1.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Swashbuckle.AspNetCore.Annotations": "6.5.0"
@@ -753,6 +754,11 @@
             "fileVersion": "8.0.23.53103"
           }
         }
+      },
+      "Product.Domain/1.0.0": {
+        "runtime": {
+          "Product.Domain.dll": {}
+        }
       }
     }
   },
@@ -1167,6 +1173,11 @@
       "sha512": "sha512-OdrZO2WjkiEG6ajEFRABTRCi/wuXQPxeV6g8xvUJqdxMvvuCCEk86zPla8UiIQJz3durtUEbNyY/3lIhS0yZvQ==",
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
+    },
+    "Product.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

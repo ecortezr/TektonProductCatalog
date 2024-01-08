@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Product.Api.Exceptions
+namespace Product.Api.Infrastructure.Exceptions
 {
     [Serializable]
     internal class InternalServerErrorException : Exception

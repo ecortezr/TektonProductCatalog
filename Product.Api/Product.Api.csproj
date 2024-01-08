@@ -19,4 +19,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Product.Api.Infrastructure.csproj" />
+    <ProjectReference Include="..\Product.Domain\Product.Api.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,10 @@
 ﻿using LazyCache;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
-using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Domain.Repositories;
 using System.Security.Cryptography;
 
-namespace Product.Api.Features.Products.Queries
+namespace Product.Api.Domain.Features.Products.Queries
 {
     public class GetProductQuery : IRequest<GetProductQueryResponse>
     {

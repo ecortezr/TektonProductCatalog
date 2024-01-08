@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Product.Api.Exceptions;
+using Product.Api.Domain.Repositories;
+using Product.Api.Infrastructure.Exceptions;
 
 namespace Product.Api.Infrastructure.HttpClient.MockApi
 {

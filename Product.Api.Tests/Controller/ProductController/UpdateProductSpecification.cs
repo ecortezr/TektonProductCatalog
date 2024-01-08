@@ -12,7 +12,7 @@ namespace Product.Api.Tests.Controller.ProductController
         public async Task Should_Return_400_When_Send_Invalid_Product_Data()
         {
 
-            var response = await _httpClient.PostAsJsonAsync("/Product", new
+            var response = await _httpClient.PostAsJsonAsync("/Product/Update/1", new
             {
                 Name = ""
             });
@@ -23,9 +23,8 @@ namespace Product.Api.Tests.Controller.ProductController
         [Fact]
         public async Task Should_Return_404_When_Product_Not_Found()
         {
-            var response = await _httpClient.PutAsJsonAsync("/Product", new
+            var response = await _httpClient.PutAsJsonAsync("/Product/Update/1", new
             {
-                ProductId = 10,
                 Name = PRODUCT_NAME
             });
 
@@ -35,7 +34,7 @@ namespace Product.Api.Tests.Controller.ProductController
         [Fact]
         public async Task Should_Return_200_When_Update_Product()
         {
-            var addResponse = await _httpClient.PostAsJsonAsync("/Product", new
+            var addResponse = await _httpClient.PostAsJsonAsync("/Product/Insert", new
             {
                 Name = PRODUCT_NAME,
                 Description = "Test Description",
@@ -46,9 +45,8 @@ namespace Product.Api.Tests.Controller.ProductController
 
             Assert.Equal(HttpStatusCode.Created, addResponse.StatusCode);
 
-            var putResponse = await _httpClient.PutAsJsonAsync("/Product", new
+            var putResponse = await _httpClient.PutAsJsonAsync("/Product/Update/1", new
             {
-                ProductId = 1,
                 Name = $"{PRODUCT_NAME}-v2"
             });
 
@@ -58,7 +56,7 @@ namespace Product.Api.Tests.Controller.ProductController
         [Fact]
         public async Task Should_Update_Storage_When_Update_Product()
         {
-            var addResponse = await _httpClient.PostAsJsonAsync("/Product", new
+            var addResponse = await _httpClient.PostAsJsonAsync("/Product/Insert", new
             {
                 Name = PRODUCT_NAME,
                 Description = "Test Description",
@@ -70,7 +68,7 @@ namespace Product.Api.Tests.Controller.ProductController
             Assert.Equal(HttpStatusCode.Created, addResponse.StatusCode);
 
             var newName = $"{PRODUCT_NAME}-v2";
-            var putResponse = await _httpClient.PutAsJsonAsync("/Product", new
+            var putResponse = await _httpClient.PutAsJsonAsync("/Product/Update/1", new
             {
                 ProductId = 1,
                 Name = newName

@@ -1,8 +1,10 @@
-﻿using Polly;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
 using System.Text;
 using System.Text.Json;
 
-namespace Product.Api.Infrastructure.HttpClient
+namespace Product.Infrastructure.HttpClient
 {
     public static class ClientsRegister
     {
@@ -12,9 +14,9 @@ namespace Product.Api.Infrastructure.HttpClient
         public static IServiceCollection AddClients(this IServiceCollection services, IConfiguration configuration)
         {
             var pollyRetryPolicy = configuration["PollyRetryPolicy"];
-            _retryPolicy = (pollyRetryPolicy is null)
+            _retryPolicy = pollyRetryPolicy is null
                 ? DEFAULT_RETRY_POLICY
-                : Int32.Parse(pollyRetryPolicy);
+                : int.Parse(pollyRetryPolicy);
 
             AddMockApiServiceClient(services, configuration);
 
@@ -30,7 +32,7 @@ namespace Product.Api.Infrastructure.HttpClient
                 client.BaseAddress = new Uri($"{mockApiUrl}");
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             })
-                .AddTransientHttpErrorPolicy(x => 
+                .AddTransientHttpErrorPolicy(x =>
                     x.WaitAndRetryAsync(_retryPolicy, _ => TimeSpan.FromMilliseconds(300))
                 );
 

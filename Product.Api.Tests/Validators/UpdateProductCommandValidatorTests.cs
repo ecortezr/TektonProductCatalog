@@ -1,6 +1,6 @@
 ﻿using FluentValidation.TestHelper;
-using Product.Api.Features.Products.Commands;
-using Product.Api.Validators;
+using Product.Api.Domain.Features.Products.Commands;
+using Product.Api.Domain.Validators;
 
 namespace Product.Api.Tests.Validators
 {

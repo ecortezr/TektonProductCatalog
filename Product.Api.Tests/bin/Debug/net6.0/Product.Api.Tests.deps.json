@@ -2469,6 +2469,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.14",
           "Microsoft.Extensions.Http.Polly": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
+          "Product.Domain": "1.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Swashbuckle.AspNetCore.Annotations": "6.5.0"
@@ -2478,6 +2479,14 @@
         },
         "compile": {
           "Product.Api.dll": {}
+        }
+      },
+      "Product.Domain/1.0.0": {
+        "runtime": {
+          "Product.Domain.dll": {}
+        },
+        "compile": {
+          "Product.Domain.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/6.0.0.0": {
@@ -5290,6 +5299,11 @@
       "hashPath": "xunit.runner.visualstudio.2.4.5.nupkg.sha512"
     },
     "Product.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Product.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Product.Api.Infrastructure
+namespace Product.Api.Infrastructure.Storage
 {
     public class ProductDbContext : DbContext
     {
