@@ -1,5 +1,4 @@
 using Product.Api.Infrastructure;
-using System.Net;
 
 namespace Product.Api.Tests.Controller
 {
@@ -9,7 +8,7 @@ namespace Product.Api.Tests.Controller
         protected readonly HttpClient _httpClient;
         protected readonly ProductDbContext _dbContext;
 
-        public BaseSpecification()
+        protected BaseSpecification()
         {
             _api = new ProductApiFactory();
             _httpClient = _api.CreateClient();

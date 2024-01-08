@@ -1,13 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Product.Api.Features.Products.Commands;
 using Product.Api.Features.Products.Queries;
-using Product.Api.Infrastructure;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
-using System.Threading;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Product.Api.Controllers
 {
@@ -23,24 +19,23 @@ namespace Product.Api.Controllers
         }
 
         /// <summary>
-        ///     List all products
-        /// </summary>
-        [SwaggerResponse((int)HttpStatusCode.OK)]
-        [HttpGet(Name = "GetProducts")]
-        public async Task<IActionResult> GetAll()
-        {
-            return Ok(await _mediator.Send(new GetProductsQuery()));
-        }
-
-        /// <summary>
         ///     Get a product by Id
         /// </summary>
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
+        [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
         [HttpGet("{ProductId:int}")]
         public async Task<IActionResult> Get([FromRoute] int ProductId)
         {
-            var product = await _mediator.Send(new GetProductQuery(ProductId));
+            GetProductQueryResponse product;
+            try
+            {
+                product = await _mediator.Send(new GetProductQuery(ProductId));
+            }
+            catch (Exception ex) {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+
             return (product is null)
                 ? NotFound()
                 : Ok(product);

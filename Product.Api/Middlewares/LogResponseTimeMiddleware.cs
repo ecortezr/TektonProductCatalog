@@ -1,6 +1,5 @@
 ﻿using Product.Api.Middlewares;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace Product.Api.Middlewares
 {
@@ -41,7 +40,7 @@ namespace Product.Api.Middlewares
 }
 public static class LogResponseTimeMiddlewareExtensions
 {
-    public static IApplicationBuilder UseRequestCulture(this IApplicationBuilder builder)
+    public static IApplicationBuilder UseLogResponseTime(this IApplicationBuilder builder)
     {
         return builder.UseMiddleware<LogResponseTimeMiddleware>();
     }

@@ -4,6 +4,8 @@ using LazyCache;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Infrastructure;
+using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Infrastructure.HttpClient.MockApi;
 using Product.Api.Validators;
 using Serilog;
 using Serilog.Events;
@@ -21,7 +23,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.PropertyNamingPolicy = null
+);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -48,6 +52,13 @@ builder.Services.AddLazyCache();
 // Adding Serilog
 builder.Host.UseSerilog();
 
+// Adding external API Clients
+var configuration = builder.Configuration;
+builder.Services.AddClients(configuration);
+
+// Adding http client implementations
+builder.Services.AddScoped<IDiscountClient, DiscountClient>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -72,7 +83,7 @@ if (app.Environment.IsDevelopment())
 app.UseSerilogRequestLogging();
 
 // Add middleware to log the time of every request/response
-// app.UseRequestCulture();
+// app.UseLogResponseTime();
 
 app.UseAuthorization();
 

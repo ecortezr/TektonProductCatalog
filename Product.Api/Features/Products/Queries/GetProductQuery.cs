@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
 using Product.Api.Infrastructure;
+using Product.Api.Infrastructure.HttpClient;
+using System.Security.Cryptography;
 
 namespace Product.Api.Features.Products.Queries
 {
@@ -20,11 +22,17 @@ namespace Product.Api.Features.Products.Queries
     {
         private readonly ProductDbContext _context;
         private readonly IAppCache _cache;
+        private readonly IDiscountClient _discountClient;
 
-        public GetProductQueryHandler(ProductDbContext context, IAppCache cache)
+        public GetProductQueryHandler(
+            ProductDbContext context,
+            IAppCache cache,
+            IDiscountClient discountClient
+        )
         {
             _context = context;
             _cache = cache;
+            _discountClient = discountClient;
         }
 
         public async Task<GetProductQueryResponse?> Handle(GetProductQuery request, CancellationToken cancellationToken)
@@ -36,7 +44,7 @@ namespace Product.Api.Features.Products.Queries
                 return null;
             }
 
-            var discount = GetDiscount(product.ProductId);
+            var discount = await GetDiscount(product.ProductId);
 
             var responseProduct = new GetProductQueryResponse()
             {
@@ -66,9 +74,19 @@ namespace Product.Api.Features.Products.Queries
             return statusName ?? defaultStatusName;
         }
 
-        private int GetDiscount(int id)
+        private async Task<int> GetDiscount(int productId)
         {
-            return id;
+            var randomId = GetRandomIdForEndpoint(productId);
+            var apiResponse = await _discountClient.GetRandomDiscountById(randomId);
+
+            return await _discountClient.GetDiscountFromResult(apiResponse);
+        }
+
+        private int GetRandomIdForEndpoint(int productId, int lowerBound = 0, int upperBound = 101)
+        {
+            return RandomNumberGenerator.GetInt32(lowerBound, upperBound);
+            //var random = new Random(productId);
+            //return random.Next(lowerBound, upperBound);
         }
     }
 

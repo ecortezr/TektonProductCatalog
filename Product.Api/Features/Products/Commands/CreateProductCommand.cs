@@ -15,12 +15,10 @@ namespace Product.Api.Features.Products.Commands
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Domain.Entities.Product>
     {
-        private readonly ILogger<CreateProductCommandHandler> _logger;
         private readonly ProductDbContext _context;
 
-        public CreateProductCommandHandler(ILogger<CreateProductCommandHandler> logger, ProductDbContext context)
+        public CreateProductCommandHandler(ProductDbContext context)
         {
-            _logger = logger;
             _context = context;
         }
 

@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[17.3.2, )"
             },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -160,6 +164,14 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Microsoft.Extensions.Http.Polly": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
