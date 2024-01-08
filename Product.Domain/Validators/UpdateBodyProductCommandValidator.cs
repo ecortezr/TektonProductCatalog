@@ -3,9 +3,9 @@ using Product.Api.Domain.Features.Products.Commands;
 
 namespace Product.Api.Domain.Validators
 {
-    public class UpdateProductCommandValidator : AbstractValidator<UpdateProductCommand>
+    public class UpdateBodyProductCommandValidator : AbstractValidator<UpdateBodyProductCommand>
     {
-        public UpdateProductCommandValidator()
+        public UpdateBodyProductCommandValidator()
         {
             When(product => product.Name != null, () => {
                 RuleFor(product => product.Name).NotEmpty();

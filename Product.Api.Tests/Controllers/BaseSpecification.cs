@@ -1,18 +1,19 @@
-using Product.Api.Infrastructure;
+using Product.Api.Domain.Repositories;
+using Product.Api.Infrastructure.Storage;
 
-namespace Product.Api.Tests.Controller
+namespace Product.Api.Tests.Controllers
 {
     public abstract class BaseSpecification
     {
         protected readonly ProductApiFactory _api;
         protected readonly HttpClient _httpClient;
-        protected readonly ProductDbContext _dbContext;
+        protected readonly IProductRepository _productRepository;
 
         protected BaseSpecification()
         {
             _api = new ProductApiFactory();
             _httpClient = _api.CreateClient();
-            _dbContext = _api.CreateProductDbContext();
+            _productRepository = new ProductRepository(_api.CreateProductDbContext());
         }
     }
 }

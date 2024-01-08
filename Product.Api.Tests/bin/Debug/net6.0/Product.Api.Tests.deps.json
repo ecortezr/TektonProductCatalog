@@ -40,6 +40,8 @@
           "Microsoft.NET.Test.Sdk": "17.3.2",
           "Moq": "4.20.70",
           "Product.Api": "1.0.0",
+          "Product.Api.Domain": "1.0.0",
+          "Product.Api.Infrastructure": "1.0.0",
           "coverlet.collector": "3.1.2",
           "xunit": "2.4.2",
           "xunit.runner.visualstudio": "2.4.5",
@@ -2469,7 +2471,8 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.14",
           "Microsoft.Extensions.Http.Polly": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
-          "Product.Domain": "1.0.0",
+          "Product.Api.Domain": "1.0.0",
+          "Product.Api.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Swashbuckle.AspNetCore.Annotations": "6.5.0"
@@ -2481,12 +2484,32 @@
           "Product.Api.dll": {}
         }
       },
-      "Product.Domain/1.0.0": {
+      "Product.Api.Domain/1.0.0": {
+        "dependencies": {
+          "FluentValidation.AspNetCore": "11.3.0",
+          "LazyCache.AspNetCore": "2.4.0",
+          "MediatR": "12.2.0",
+          "Microsoft.EntityFrameworkCore": "7.0.14"
+        },
         "runtime": {
-          "Product.Domain.dll": {}
+          "Product.Api.Domain.dll": {}
         },
         "compile": {
-          "Product.Domain.dll": {}
+          "Product.Api.Domain.dll": {}
+        }
+      },
+      "Product.Api.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.14",
+          "Microsoft.Extensions.Http.Polly": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Product.Api.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Product.Api.Infrastructure.dll": {}
+        },
+        "compile": {
+          "Product.Api.Infrastructure.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/6.0.0.0": {
@@ -5303,7 +5326,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Product.Domain/1.0.0": {
+    "Product.Api.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Product.Api.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

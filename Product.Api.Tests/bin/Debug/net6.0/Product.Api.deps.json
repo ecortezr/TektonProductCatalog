@@ -15,7 +15,8 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.14",
           "Microsoft.Extensions.Http.Polly": "8.0.0",
           "Newtonsoft.Json": "13.0.3",
-          "Product.Domain": "1.0.0",
+          "Product.Api.Domain": "1.0.0",
+          "Product.Api.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "8.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "Swashbuckle.AspNetCore.Annotations": "6.5.0"
@@ -755,9 +756,26 @@
           }
         }
       },
-      "Product.Domain/1.0.0": {
+      "Product.Api.Domain/1.0.0": {
+        "dependencies": {
+          "FluentValidation.AspNetCore": "11.3.0",
+          "LazyCache.AspNetCore": "2.4.0",
+          "MediatR": "12.2.0",
+          "Microsoft.EntityFrameworkCore": "7.0.14"
+        },
         "runtime": {
-          "Product.Domain.dll": {}
+          "Product.Api.Domain.dll": {}
+        }
+      },
+      "Product.Api.Infrastructure/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.14",
+          "Microsoft.Extensions.Http.Polly": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Product.Api.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Product.Api.Infrastructure.dll": {}
         }
       }
     }
@@ -1174,7 +1192,12 @@
       "path": "system.text.json/8.0.0",
       "hashPath": "system.text.json.8.0.0.nupkg.sha512"
     },
-    "Product.Domain/1.0.0": {
+    "Product.Api.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Product.Api.Infrastructure/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

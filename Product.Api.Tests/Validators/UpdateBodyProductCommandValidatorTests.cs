@@ -4,14 +4,14 @@ using Product.Api.Domain.Validators;
 
 namespace Product.Api.Tests.Validators
 {
-    public class UpdateProductCommandValidatorTests
+    public class UpdateBodyProductCommandValidatorTests
     {
-        private readonly UpdateProductCommandValidator _validator = new();
+        private readonly UpdateBodyProductCommandValidator _validator = new();
 
         [Fact]
         public void GivenAnInvalidNameValue_ShouldHaveValidationError()
         {
-            var product = new UpdateProductCommand { Name = "" };
+            var product = new UpdateBodyProductCommand { Name = "" };
             var result = _validator.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(model => model.Name);
@@ -20,7 +20,7 @@ namespace Product.Api.Tests.Validators
         [Fact]
         public void GivenAnInvalidDescriptionValue_ShouldHaveValidationError()
         {
-            var product = new UpdateProductCommand { Description = "" };
+            var product = new UpdateBodyProductCommand { Description = "" };
             var result = _validator.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(model => model.Description);
@@ -31,7 +31,7 @@ namespace Product.Api.Tests.Validators
         [InlineData(5)]
         public void GivenInvalidStatusValue_ShouldHaveValidationError(int status)
         {
-            var product = new UpdateProductCommand { Status = status };
+            var product = new UpdateBodyProductCommand { Status = status };
             var result = _validator.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(model => model.Status);
@@ -42,7 +42,7 @@ namespace Product.Api.Tests.Validators
         [InlineData(0)]
         public void GivenInvalidPriceValue_ShouldHaveValidationError(decimal price)
         {
-            var product = new UpdateProductCommand { Price = price };
+            var product = new UpdateBodyProductCommand { Price = price };
             var result = _validator.TestValidate(product);
 
             result.ShouldHaveValidationErrorFor(model => model.Price);

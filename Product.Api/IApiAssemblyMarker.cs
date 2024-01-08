@@ -1,4 +1,4 @@
-﻿namespace Product.Api.Tests
+﻿namespace Product.Api
 {
     public interface IApiAssemblyMarker
     {

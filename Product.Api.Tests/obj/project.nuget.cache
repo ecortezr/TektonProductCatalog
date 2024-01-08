@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UG3Qo4Hr863v62+H3f+Cj8bhctidV3wl4K6Cr/ConFRaolauFBz070JO7WVaP7JpYjtQKUXMi+tDkhvWWDfIxA==",
+  "dgSpecHash": "pgLo9N3KWMpBS+3Q8k/SfkYFJaZzlsT6BSS7LiXy3u4Hkffmd+GUcUdPNkPd06CCssJM/aKbNW7/W42jh0kVtQ==",
   "success": true,
   "projectFilePath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Tests\\Product.Api.Tests.csproj",
   "expectedPackageFiles": [

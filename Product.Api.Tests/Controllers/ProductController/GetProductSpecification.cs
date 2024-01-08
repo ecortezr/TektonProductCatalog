@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Product.Api.Tests.Controller.ProductController
+namespace Product.Api.Tests.Controllers.ProductController
 {
     public class GetProductSpecification : BaseSpecification
     {

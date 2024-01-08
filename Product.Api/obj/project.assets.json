@@ -1080,7 +1080,8 @@
         "dependencies": {
           "FluentValidation.AspNetCore": "11.3.0",
           "LazyCache.AspNetCore": "2.4.0",
-          "MediatR": "12.2.0"
+          "MediatR": "12.2.0",
+          "Microsoft.EntityFrameworkCore": "7.0.14"
         },
         "compile": {
           "bin/placeholder/Product.Api.Domain.dll": {}

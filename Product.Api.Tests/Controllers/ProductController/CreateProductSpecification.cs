@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Product.Api.Tests.Controller.ProductController
+namespace Product.Api.Tests.Controllers.ProductController
 {
     public class CreateProductSpecification : BaseSpecification
     {
@@ -14,7 +14,7 @@ namespace Product.Api.Tests.Controller.ProductController
 
             var response = await _httpClient.PostAsJsonAsync("/Product/Insert", new
             {
-                Stock = 0
+                Price = 0
             });
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
@@ -50,9 +50,10 @@ namespace Product.Api.Tests.Controller.ProductController
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-            var dbEntry = await _dbContext.Products.FirstOrDefaultAsync(product =>
-                product.Name == PRODUCT_NAME
-            );
+            var dbEntry = await _productRepository.Set<Domain.Entities.Product>()
+                .FirstOrDefaultAsync(product =>
+                    product.Name == PRODUCT_NAME
+                );
 
             Assert.NotNull(dbEntry);
         }

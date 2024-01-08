@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Product.Api.Tests.Controller.ProductController
+namespace Product.Api.Tests.Controllers.ProductController
 {
     public class UpdateProductSpecification : BaseSpecification
     {
@@ -12,7 +12,7 @@ namespace Product.Api.Tests.Controller.ProductController
         public async Task Should_Return_400_When_Send_Invalid_Product_Data()
         {
 
-            var response = await _httpClient.PostAsJsonAsync("/Product/Update/1", new
+            var response = await _httpClient.PutAsJsonAsync("/Product/Update/1", new
             {
                 Name = ""
             });
@@ -76,9 +76,10 @@ namespace Product.Api.Tests.Controller.ProductController
 
             Assert.Equal(HttpStatusCode.OK, putResponse.StatusCode);
 
-            var dbEntry = await _dbContext.Products.FirstOrDefaultAsync(product =>
-                product.Name == newName
-            );
+            var dbEntry = await _productRepository.Set<Domain.Entities.Product>()
+                .FirstOrDefaultAsync(product =>
+                    product.Name == newName
+                );
 
             Assert.NotNull(dbEntry);
         }

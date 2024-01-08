@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
+using Product.Api.Domain.Repositories;
 
 namespace Product.Api.Domain.Features.Products.Commands
 {
@@ -18,16 +20,16 @@ namespace Product.Api.Domain.Features.Products.Commands
 
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Entities.Product>
     {
-        private readonly ProductDbContext _context;
+        private readonly IProductRepository _context;
 
-        public UpdateProductCommandHandler(ProductDbContext context)
+        public UpdateProductCommandHandler(IProductRepository context)
         {
             _context = context;
         }
 
         public async Task<Entities.Product?> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products
+            var product = await _context.Set<Entities.Product>()
                 .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);
 
             if (product is null)

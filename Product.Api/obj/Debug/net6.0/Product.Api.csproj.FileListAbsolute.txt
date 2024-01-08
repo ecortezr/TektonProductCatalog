@@ -101,5 +101,7 @@ C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Microsoft.Extens
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Polly.dll
 C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Polly.Extensions.Http.dll
-C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Domain.dll
-C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Domain.pdb
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Api.Domain.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Api.Infrastructure.dll
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Api.Infrastructure.pdb
+C:\backup\dev\TektonProductCatalog\Product.Api\bin\Debug\net6.0\Product.Api.Domain.pdb
