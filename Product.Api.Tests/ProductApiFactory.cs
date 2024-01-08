@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Moq;
+using Moq.Protected;
+using Product.Api.Infrastructure;
+using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Infrastructure.HttpClient.MockApi;
+using System.Net;
 
 namespace Product.Api.Tests
 {
@@ -24,12 +25,42 @@ namespace Product.Api.Tests
         {
             base.ConfigureWebHost(builder);
 
+            builder.UseEnvironment("Testing");
             builder.ConfigureTestServices(services =>
             {
                 services.AddDbContextFactory<ProductDbContext>(
                     o => o.UseInMemoryDatabase("products")
                 );
+
+                services.AddScoped<IDiscountClient>(provider => GetDiscountClientClass());
             });
+        }
+
+        private static IDiscountClient GetDiscountClientClass()
+        {
+            var mockHttpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            mockHttpMessageHandler
+                .Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>()
+                )
+                .ReturnsAsync(new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent("{ 'discount': '10', 'id': '1' }")
+                });
+
+            var client = new HttpClient(mockHttpMessageHandler.Object)
+            {
+                BaseAddress = new Uri("https://www.tekton.com/")
+            };
+
+            var mockFactory = new Mock<IHttpClientFactory>();
+            mockFactory.Setup(_ => _.CreateClient("MockApiSvc")).Returns(client);
+
+            return new DiscountClient(mockFactory.Object);
         }
     }
 }

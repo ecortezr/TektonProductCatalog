@@ -2,20 +2,22 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace Product.Api.Tests
+namespace Product.Api.Tests.Controller.ProductController
 {
-    public class CreateSpecification
+    public class CreateProductSpecification : BaseSpecification
     {
-        private readonly ProductApiFactory _api;
-        private readonly HttpClient _httpClient;
-        private readonly ProductDbContext _dbContext;
         const string PRODUCT_NAME = "Test 1";
 
-        public CreateSpecification()
+        [Fact]
+        public async Task Should_Return_400_When_Send_Invalid_Product_Data()
         {
-            _api = new ProductApiFactory();
-            _httpClient = _api.CreateClient();
-            _dbContext = _api.CreateProductDbContext();
+
+            var response = await _httpClient.PostAsJsonAsync("/Product", new
+            {
+                Stock = 0
+            });
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         [Fact]
@@ -25,7 +27,10 @@ namespace Product.Api.Tests
             var response = await _httpClient.PostAsJsonAsync("/Product", new
             {
                 Name = PRODUCT_NAME,
-                Price = 12
+                Description = "Test Description",
+                Status = 1,
+                Stock = 0,
+                Price = 10
             });
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
@@ -37,7 +42,10 @@ namespace Product.Api.Tests
             var response = await _httpClient.PostAsJsonAsync("/Product", new
             {
                 Name = PRODUCT_NAME,
-                Price = 12
+                Description = "Test Description",
+                Status = 1,
+                Stock = 0,
+                Price = 10
             });
 
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
