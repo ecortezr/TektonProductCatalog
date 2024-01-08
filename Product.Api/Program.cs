@@ -3,10 +3,13 @@ using FluentValidation.AspNetCore;
 using LazyCache;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Product.Api.Infrastructure;
-using Product.Api.Infrastructure.HttpClient;
+using Product.Api;
+using Product.Api.Domain.Features.Products.Commands;
+using Product.Api.Domain.Repositories;
+using Product.Api.Domain.Validators;
 using Product.Api.Infrastructure.HttpClient.MockApi;
-using Product.Api.Validators;
+using Product.Api.Infrastructure.Storage;
+using Product.Infrastructure.HttpClient;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
@@ -41,10 +44,11 @@ builder.Services.AddDbContext<ProductDbContext>(options =>
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductCommandValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductCommandValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateBodyProductCommandValidator>();
 
 // Adding MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateProductCommandHandler>());
+// builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // Adding LazyCache
 builder.Services.AddLazyCache();
@@ -58,6 +62,7 @@ builder.Services.AddClients(configuration);
 
 // Adding http client implementations
 builder.Services.AddScoped<IDiscountClient, DiscountClient>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

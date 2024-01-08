@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Product.Api.Infrastructure
+namespace Product.Api.Infrastructure.Storage
 {
     public class ProductDbContext : DbContext
     {
@@ -10,6 +10,6 @@ namespace Product.Api.Infrastructure
             Database.EnsureCreated();
         }
 
-        public DbSet<Domain.Entities.Product> Products => Set<Domain.Entities.Product>();
+        public DbSet<Domain.Entities.Product> Products { get; set; }
     }
 }

@@ -1,31 +1,35 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
+using Product.Api.Domain.Repositories;
 
-namespace Product.Api.Features.Products.Commands
+namespace Product.Api.Domain.Features.Products.Commands
 {
-    public class UpdateProductCommand : IRequest<Domain.Entities.Product>
+    public class UpdateBodyProductCommand : IRequest<Entities.Product>
     {
-        public int ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int? Status { get; set; }
         public decimal? Price { get; set; }
     }
 
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Domain.Entities.Product>
+    public class UpdateProductCommand : UpdateBodyProductCommand
     {
-        private readonly ProductDbContext _context;
+        public int ProductId { get; set; }
+    }
 
-        public UpdateProductCommandHandler(ProductDbContext context)
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Entities.Product>
+    {
+        private readonly IProductRepository _context;
+
+        public UpdateProductCommandHandler(IProductRepository context)
         {
             _context = context;
         }
 
-        public async Task<Domain.Entities.Product?> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Entities.Product?> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products
+            var product = await _context.Set<Entities.Product>()
                 .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);
 
             if (product is null)
