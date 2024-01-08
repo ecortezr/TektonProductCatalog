@@ -24,8 +24,9 @@ namespace Product.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
-        [HttpGet("{ProductId:int}")]
-        public async Task<IActionResult> Get([FromRoute] int ProductId)
+        [HttpGet]
+        [Route("[action]/{ProductId:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int ProductId)
         {
             GetProductQueryResponse product;
             try
@@ -47,8 +48,9 @@ namespace Product.Api.Controllers
         /// <param name="command"></param>
         [SwaggerResponse((int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
-        [HttpPost(Name = "CreateProduct")]
-        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Insert([FromBody] CreateProductCommand command)
         {
             var newProduct = await _mediator.Send(command);
 
@@ -62,10 +64,20 @@ namespace Product.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
-        [HttpPut(Name = "UpdateProduct")]
-        public async Task<IActionResult> Update(UpdateProductCommand command)
+        [HttpPut]
+        [Route("[action]/{ProductId:int}")]
+        public async Task<IActionResult> Update([FromRoute] int ProductId, [FromBody] UpdateBodyProductCommand command)
         {
-            var updatedProduct = await _mediator.Send(command);
+            var fullCommand = new UpdateProductCommand()
+            {
+                ProductId = ProductId,
+                Name = command.Name,
+                Description = command.Description,
+                Status = command.Status,
+                Price = command.Price,
+            };
+
+            var updatedProduct = await _mediator.Send(fullCommand);
 
             return (updatedProduct is null)
                 ? NotFound()

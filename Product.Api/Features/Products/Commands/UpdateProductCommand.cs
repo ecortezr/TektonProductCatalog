@@ -5,13 +5,17 @@ using Product.Api.Infrastructure;
 
 namespace Product.Api.Features.Products.Commands
 {
-    public class UpdateProductCommand : IRequest<Domain.Entities.Product>
+    public class UpdateBodyProductCommand : IRequest<Domain.Entities.Product>
     {
-        public int ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int? Status { get; set; }
         public decimal? Price { get; set; }
+    }
+
+    public class UpdateProductCommand : UpdateBodyProductCommand
+    {
+        public int ProductId { get; set; }
     }
 
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Domain.Entities.Product>
