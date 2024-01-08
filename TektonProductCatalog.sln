@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Api.Tests", "Produc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Api", "Product.Api\Product.Api.csproj", "{4B49FF03-D4A5-4268-BCEC-2BC2B1CA1176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api.Domain", "Product.Domain\Product.Api.Domain.csproj", "{F1E8C83B-F53C-4CD5-8CDC-F21135F3A7F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api.Domain", "Product.Api.Domain\Product.Api.Domain.csproj", "{F1E8C83B-F53C-4CD5-8CDC-F21135F3A7F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api.Infrastructure", "Infrastructure\Product.Api.Infrastructure.csproj", "{8E59B07B-A4BA-4C94-83E0-1E4F8B66BDFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api.Infrastructure", "Product.Api.Infrastructure\Product.Api.Infrastructure.csproj", "{8E59B07B-A4BA-4C94-83E0-1E4F8B66BDFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

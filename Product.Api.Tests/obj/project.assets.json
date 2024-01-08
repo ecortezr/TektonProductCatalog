@@ -9248,13 +9248,13 @@
     },
     "Product.Api.Domain/1.0.0": {
       "type": "project",
-      "path": "../Product.Domain/Product.Api.Domain.csproj",
-      "msbuildProject": "../Product.Domain/Product.Api.Domain.csproj"
+      "path": "../Product.Api.Domain/Product.Api.Domain.csproj",
+      "msbuildProject": "../Product.Api.Domain/Product.Api.Domain.csproj"
     },
     "Product.Api.Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Infrastructure/Product.Api.Infrastructure.csproj",
-      "msbuildProject": "../Infrastructure/Product.Api.Infrastructure.csproj"
+      "path": "../Product.Api.Infrastructure/Product.Api.Infrastructure.csproj",
+      "msbuildProject": "../Product.Api.Infrastructure/Product.Api.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9304,14 +9304,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\backup\\dev\\TektonProductCatalog\\Infrastructure\\Product.Api.Infrastructure.csproj": {
-              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Infrastructure\\Product.Api.Infrastructure.csproj"
+            "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Domain\\Product.Api.Domain.csproj": {
+              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Domain\\Product.Api.Domain.csproj"
+            },
+            "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Infrastructure\\Product.Api.Infrastructure.csproj": {
+              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Infrastructure\\Product.Api.Infrastructure.csproj"
             },
             "C:\\backup\\dev\\TektonProductCatalog\\Product.Api\\Product.Api.csproj": {
               "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api\\Product.Api.csproj"
-            },
-            "C:\\backup\\dev\\TektonProductCatalog\\Product.Domain\\Product.Api.Domain.csproj": {
-              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Domain\\Product.Api.Domain.csproj"
             }
           }
         }
