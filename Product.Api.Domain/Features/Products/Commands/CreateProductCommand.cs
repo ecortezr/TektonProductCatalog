@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
+using Product.Api.Domain.Repositories;
 
-namespace Product.Api.Features.Products.Commands
+namespace Product.Api.Domain.Features.Products.Commands
 {
-    public class CreateProductCommand : IRequest<Domain.Entities.Product>
+    public class CreateProductCommand : IRequest<Entities.Product>
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
@@ -13,18 +13,18 @@ namespace Product.Api.Features.Products.Commands
         public decimal Price { get; set; }
     }
 
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Domain.Entities.Product>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Entities.Product>
     {
-        private readonly ProductDbContext _context;
+        private readonly IProductRepository _context;
 
-        public CreateProductCommandHandler(ProductDbContext context)
+        public CreateProductCommandHandler(IProductRepository context)
         {
             _context = context;
         }
 
-        public async Task<Domain.Entities.Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Entities.Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var newProduct = new Domain.Entities.Product
+            var newProduct = new Entities.Product
             {
                 Name = request.Name,
                 Description = request.Description,
@@ -33,7 +33,8 @@ namespace Product.Api.Features.Products.Commands
                 Price = request.Price
             };
 
-            _context.Products.Add(newProduct);
+            var entity = _context.Set<Entities.Product>();
+            entity.Add(newProduct);
 
             await _context.SaveChangesAsync(cancellationToken);
 

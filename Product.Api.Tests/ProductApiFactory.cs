@@ -5,16 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
-using Product.Api.Infrastructure;
-using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Domain.Repositories;
 using Product.Api.Infrastructure.HttpClient.MockApi;
+using Product.Api.Infrastructure.Storage;
 using System.Net;
 
 namespace Product.Api.Tests
 {
     public class ProductApiFactory : WebApplicationFactory<IApiAssemblyMarker>
     {
-        public ProductDbContext CreateProductDbContext() {
+        public ProductDbContext CreateProductDbContext()
+        {
             var db = Services.GetRequiredService<IDbContextFactory<ProductDbContext>>().CreateDbContext();
             db.Database.EnsureCreated();
 

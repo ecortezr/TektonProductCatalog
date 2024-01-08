@@ -1,4 +1,4 @@
-﻿namespace Product.Api.Infrastructure.HttpClient
+﻿namespace Product.Api.Domain.Repositories
 {
     public interface IDiscountClient
     {

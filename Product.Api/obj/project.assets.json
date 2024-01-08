@@ -1073,6 +1073,38 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "Product.Api.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "FluentValidation.AspNetCore": "11.3.0",
+          "LazyCache.AspNetCore": "2.4.0",
+          "MediatR": "12.2.0",
+          "Microsoft.EntityFrameworkCore": "7.0.14"
+        },
+        "compile": {
+          "bin/placeholder/Product.Api.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Product.Api.Domain.dll": {}
+        }
+      },
+      "Product.Api.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.14",
+          "Microsoft.Extensions.Http.Polly": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "Product.Api.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Product.Api.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Product.Api.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -2548,6 +2580,16 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Product.Api.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Product.Api.Domain/Product.Api.Domain.csproj",
+      "msbuildProject": "../Product.Api.Domain/Product.Api.Domain.csproj"
+    },
+    "Product.Api.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Product.Api.Infrastructure/Product.Api.Infrastructure.csproj",
+      "msbuildProject": "../Product.Api.Infrastructure/Product.Api.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2557,8 +2599,8 @@
       "MediatR >= 12.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.14",
-      "Microsoft.Extensions.Http.Polly >= 8.0.0",
-      "Newtonsoft.Json >= 13.0.3",
+      "Product.Api.Domain >= 1.0.0",
+      "Product.Api.Infrastructure >= 1.0.0",
       "Serilog.AspNetCore >= 8.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "Swashbuckle.AspNetCore.Annotations >= 6.5.0"
@@ -2595,7 +2637,14 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Domain\\Product.Api.Domain.csproj": {
+              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Domain\\Product.Api.Domain.csproj"
+            },
+            "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Infrastructure\\Product.Api.Infrastructure.csproj": {
+              "projectPath": "C:\\backup\\dev\\TektonProductCatalog\\Product.Api.Infrastructure\\Product.Api.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2627,14 +2676,6 @@
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
             "version": "[7.0.14, )"
-          },
-          "Microsoft.Extensions.Http.Polly": {
-            "target": "Package",
-            "version": "[8.0.0, )"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[13.0.3, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",

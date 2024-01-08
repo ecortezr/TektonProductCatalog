@@ -2,11 +2,10 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Product.Api.Domain.Enums;
-using Product.Api.Infrastructure;
-using Product.Api.Infrastructure.HttpClient;
+using Product.Api.Domain.Repositories;
 using System.Security.Cryptography;
 
-namespace Product.Api.Features.Products.Queries
+namespace Product.Api.Domain.Features.Products.Queries
 {
     public class GetProductQuery : IRequest<GetProductQueryResponse>
     {
@@ -20,12 +19,12 @@ namespace Product.Api.Features.Products.Queries
 
     public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProductQueryResponse>
     {
-        private readonly ProductDbContext _context;
+        private readonly IProductRepository _context;
         private readonly IAppCache _cache;
         private readonly IDiscountClient _discountClient;
 
         public GetProductQueryHandler(
-            ProductDbContext context,
+            IProductRepository context,
             IAppCache cache,
             IDiscountClient discountClient
         )
@@ -37,7 +36,7 @@ namespace Product.Api.Features.Products.Queries
 
         public async Task<GetProductQueryResponse?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await _context.Products
+            var product = await _context.Set<Entities.Product>()
                 .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);
             if (product is null)
             {
