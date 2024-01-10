@@ -8,7 +8,7 @@ namespace Product.Api.Tests.Controllers.ProductController
         [Fact]
         public async Task Should_Return_404_When_Product_Not_Found()
         {
-            var response = await _httpClient.GetAsync("/Product/GetById/1");
+            var response = await _httpClient.GetAsync("/products/1");
 
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
@@ -16,7 +16,7 @@ namespace Product.Api.Tests.Controllers.ProductController
         [Fact]
         public async Task Should_Return_200_When_A_Product_Is_Found()
         {
-            var addResponse = await _httpClient.PostAsJsonAsync("/Product/Insert", new
+            var addResponse = await _httpClient.PostAsJsonAsync("/products", new
             {
                 Name = "Test Name",
                 Description = "Test Description",
@@ -27,7 +27,7 @@ namespace Product.Api.Tests.Controllers.ProductController
 
             Assert.Equal(HttpStatusCode.Created, addResponse.StatusCode);
 
-            var response = await _httpClient.GetAsync("/Product/GetById/1");
+            var response = await _httpClient.GetAsync("/products/1");
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
