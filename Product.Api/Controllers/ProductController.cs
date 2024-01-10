@@ -8,7 +8,7 @@ using System.Net;
 namespace Product.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("products")]
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -25,7 +25,7 @@ namespace Product.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
         [HttpGet]
-        [Route("[action]/{ProductId:int}")]
+        [Route("{ProductId:int}")]
         public async Task<IActionResult> GetById([FromRoute] int ProductId)
         {
             GetProductQueryResponse product;
@@ -49,7 +49,6 @@ namespace Product.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.Created)]
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [HttpPost]
-        [Route("[action]")]
         public async Task<IActionResult> Insert([FromBody] CreateProductCommand command)
         {
             var newProduct = await _mediator.Send(command);
@@ -65,7 +64,7 @@ namespace Product.Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.NotFound)]
         [HttpPut]
-        [Route("[action]/{ProductId:int}")]
+        [Route("{ProductId:int}")]
         public async Task<IActionResult> Update([FromRoute] int ProductId, [FromBody] UpdateBodyProductCommand command)
         {
             var fullCommand = new UpdateProductCommand()

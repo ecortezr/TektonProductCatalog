@@ -12,7 +12,7 @@ namespace Product.Api.Tests.Controllers.ProductController
         public async Task Should_Return_400_When_Send_Invalid_Product_Data()
         {
 
-            var response = await _httpClient.PostAsJsonAsync("/Product/Insert", new
+            var response = await _httpClient.PostAsJsonAsync("/products", new
             {
                 Price = 0
             });
@@ -24,7 +24,7 @@ namespace Product.Api.Tests.Controllers.ProductController
         public async Task Should_Return_201_When_Send_Product()
         {
 
-            var response = await _httpClient.PostAsJsonAsync("/Product/Insert", new
+            var response = await _httpClient.PostAsJsonAsync("/products", new
             {
                 Name = PRODUCT_NAME,
                 Description = "Test Description",
@@ -39,7 +39,7 @@ namespace Product.Api.Tests.Controllers.ProductController
         [Fact]
         public async Task Should_Add_To_Storage_When_Has_New_Product()
         {
-            var response = await _httpClient.PostAsJsonAsync("/Product/Insert", new
+            var response = await _httpClient.PostAsJsonAsync("/products", new
             {
                 Name = PRODUCT_NAME,
                 Description = "Test Description",
