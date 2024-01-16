@@ -5,7 +5,9 @@ namespace Product.Api.Extensions
     public static class ElasticSearchExtensions
     {
         public static void AddElasticsearch(
-            this IServiceCollection services, IConfiguration configuration)
+            this IServiceCollection services,
+            IConfiguration configuration
+        )
         {
             var url = $"{configuration["ELKConfiguration:url"]}";
             var username = $"{configuration["ELKConfiguration:username"]}";

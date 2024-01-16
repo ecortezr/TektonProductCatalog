@@ -3,17 +3,16 @@ using FluentValidation.AspNetCore;
 using LazyCache;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Product.Api;
 using Product.Api.Domain.Features.Products.Commands;
 using Product.Api.Domain.Repositories;
 using Product.Api.Domain.Validators;
 using Product.Api.Extensions;
+using Product.Api.HostedServices;
 using Product.Api.Infrastructure.HttpClient.MockApi;
 using Product.Api.Infrastructure.Storage;
 using Product.Infrastructure.HttpClient;
 using Serilog;
 using Serilog.Events;
-using System.Reflection;
 
 // Create Serilog logger
 Log.Logger = new LoggerConfiguration()
@@ -58,8 +57,14 @@ builder.Services.AddLazyCache();
 // Adding Elastic Search
 builder.Services.AddElasticsearch(configuration);
 
+// Adding Kafka
+builder.Services.AddKafka(configuration);
+
 // Adding Serilog
 builder.Host.UseSerilog();
+
+// Adding Hosted Services
+builder.Services.AddHostedService<KafKaConsumer>();
 
 // Adding external API Clients
 builder.Services.AddClients(configuration);
