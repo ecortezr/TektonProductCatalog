@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Moq.Protected;
+using Nest;
 using Product.Api.Domain.Repositories;
 using Product.Api.Infrastructure.HttpClient.MockApi;
 using Product.Api.Infrastructure.Storage;
+using System;
 using System.Net;
 
 namespace Product.Api.Tests
@@ -24,9 +26,9 @@ namespace Product.Api.Tests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            base.ConfigureWebHost(builder);
-
             builder.UseEnvironment("Testing");
+            // base.ConfigureWebHost(builder);
+
             builder.ConfigureTestServices(services =>
             {
                 services.AddDbContextFactory<ProductDbContext>(
@@ -34,7 +36,25 @@ namespace Product.Api.Tests
                 );
 
                 services.AddScoped<IDiscountClient>(provider => GetDiscountClientClass());
+
+                services.AddSingleton<IElasticClient>(provider => GetElasticSearchClient());
             });
+        }
+
+        private static IElasticClient GetElasticSearchClient()
+        {
+            var indexName = "products";
+            var settings = new ConnectionSettings(new Uri("http://www.elastic.com")).BasicAuthentication("testuser", "testpassword")
+                            .PrettyJson()
+                            .DefaultIndex(indexName);
+
+            var client = new ElasticClient(settings);
+            client.Indices.Create(
+                indexName,
+                index => index.Map<Domain.Entities.Product>(x => x.AutoMap())
+            );
+
+            return client;
         }
 
         private static IDiscountClient GetDiscountClientClass()

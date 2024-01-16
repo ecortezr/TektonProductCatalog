@@ -7,6 +7,7 @@ using Product.Api;
 using Product.Api.Domain.Features.Products.Commands;
 using Product.Api.Domain.Repositories;
 using Product.Api.Domain.Validators;
+using Product.Api.Extensions;
 using Product.Api.Infrastructure.HttpClient.MockApi;
 using Product.Api.Infrastructure.Storage;
 using Product.Infrastructure.HttpClient;
@@ -23,6 +24,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -53,15 +55,19 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Cr
 // Adding LazyCache
 builder.Services.AddLazyCache();
 
+// Adding Elastic Search
+builder.Services.AddElasticsearch(configuration);
+
 // Adding Serilog
 builder.Host.UseSerilog();
 
 // Adding external API Clients
-var configuration = builder.Configuration;
 builder.Services.AddClients(configuration);
 
 // Adding http client implementations
 builder.Services.AddScoped<IDiscountClient, DiscountClient>();
+
+// Adding persistence repository
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();

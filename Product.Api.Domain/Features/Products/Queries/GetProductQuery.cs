@@ -1,13 +1,14 @@
 ﻿using LazyCache;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Nest;
 using Product.Api.Domain.Enums;
 using Product.Api.Domain.Repositories;
 using System.Security.Cryptography;
 
 namespace Product.Api.Domain.Features.Products.Queries
 {
-    public class GetProductQuery : IRequest<GetProductQueryResponse>
+    public class GetProductQuery : MediatR.IRequest<GetProductQueryResponse>
     {
         public int ProductId { get; set; }
 
@@ -21,23 +22,40 @@ namespace Product.Api.Domain.Features.Products.Queries
     {
         private readonly IProductRepository _context;
         private readonly IAppCache _cache;
+        private readonly IElasticClient _elasticClient;
         private readonly IDiscountClient _discountClient;
 
         public GetProductQueryHandler(
             IProductRepository context,
             IAppCache cache,
+            IElasticClient elasticClient,
             IDiscountClient discountClient
         )
         {
             _context = context;
             _cache = cache;
+            _elasticClient = elasticClient;
             _discountClient = discountClient;
         }
 
         public async Task<GetProductQueryResponse?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
+            var result = await _elasticClient.SearchAsync<Entities.Product>(s =>
+                s.Query(q =>
+                    q.QueryString(d =>
+                        d.Query('*' + "product 1" + '*')
+                    )
+                )
+                    .Size(5000)
+            );
+
+            var product = result.Documents.ToList().FirstOrDefault();
+
+
+            /*
             var product = await _context.Set<Entities.Product>()
                 .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);
+            */
             if (product is null)
             {
                 return null;
