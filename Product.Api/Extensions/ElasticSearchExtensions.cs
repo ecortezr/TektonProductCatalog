@@ -9,16 +9,18 @@ namespace Product.Api.Extensions
             IConfiguration configuration
         )
         {
-            var url = $"{configuration["ELKConfiguration:url"]}";
-            var username = $"{configuration["ELKConfiguration:username"]}";
-            var password = $"{configuration["ELKConfiguration:password"]}";
-            var defaultIndex = $"{configuration["ELKConfiguration:index"]}";
+            var url = $"{configuration["ELKConfiguration:Url"]}";
+            var username = $"{configuration["ELKConfiguration:Username"]}";
+            var password = $"{configuration["ELKConfiguration:Password"]}";
+            var defaultIndex = $"{configuration["ELKConfiguration:Index"]}";
 
-            var settings = new ConnectionSettings(new Uri(url)).BasicAuthentication(username, password)
+            var settings = new ConnectionSettings(new Uri(url))
+                .BasicAuthentication(username, password)
                 .PrettyJson()
+                .EnableApiVersioningHeader()
                 .DefaultIndex(defaultIndex);
 
-            // AddDefaultMappings(settings);
+            AddDefaultMappings(settings);
 
             var client = new ElasticClient(settings);
 
@@ -30,8 +32,8 @@ namespace Product.Api.Extensions
         private static void AddDefaultMappings(ConnectionSettings settings)
         {
             settings
-                .DefaultMappingFor<Domain.Entities.Product>(m => m
-                    .Ignore(p => p.Price)
+                .DefaultMappingFor<Domain.Entities.Product>(m =>
+                    m.IdProperty(p => p.ProductId)
                 );
         }
 

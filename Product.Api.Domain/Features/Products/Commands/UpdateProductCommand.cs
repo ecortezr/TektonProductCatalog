@@ -18,7 +18,7 @@ namespace Product.Api.Domain.Features.Products.Commands
         public int ProductId { get; set; }
     }
 
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Entities.Product>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Entities.Product?>
     {
         private readonly IProductRepository _context;
 

@@ -1,31 +1,35 @@
-﻿using System;
-using Confluent.Kafka;
-using Nest;
+﻿using Confluent.Kafka;
 
 namespace Product.Api.Extensions
 {
-	public static class KafkaExtensions
+    public static class KafkaExtensions
 	{
         public static void AddKafka(
             this IServiceCollection services,
             IConfiguration configuration
         )
         {
-            /*
-            var url = $"{configuration["ELKConfiguration:url"]}";
-            var username = $"{configuration["ELKConfiguration:username"]}";
-            var password = $"{configuration["ELKConfiguration:password"]}";
-            var defaultIndex = $"{configuration["ELKConfiguration:index"]}";
-            */
-            var config = new ConsumerConfig
+            var bootstrapServer = $"{configuration["KafkaConfiguration:BootstrapServer"]}";
+            var clientId = $"{configuration["KafkaConfiguration:ClientId"]}";
+            var groupId = $"{configuration["KafkaConfiguration:GroupId"]}";
+
+            var producerConfig = new ProducerConfig
             {
-                BootstrapServers = "localhost:9092",
-                AutoOffsetReset = AutoOffsetReset.Earliest,
-                ClientId = "my-app",
-                GroupId = "my-group",
+                BootstrapServers = bootstrapServer,
+                ClientId = clientId,
                 BrokerAddressFamily = BrokerAddressFamily.V4,
             };
-            services.AddSingleton<ConsumerConfig>(config);
+            services.AddSingleton<ProducerConfig>(producerConfig);
+
+            var consumerConfig = new ConsumerConfig
+            {
+                BootstrapServers = bootstrapServer,
+                AutoOffsetReset = AutoOffsetReset.Earliest,
+                ClientId = clientId,
+                GroupId = groupId,
+                BrokerAddressFamily = BrokerAddressFamily.V4,
+            };
+            services.AddSingleton<ConsumerConfig>(consumerConfig);
         }
     }
 }

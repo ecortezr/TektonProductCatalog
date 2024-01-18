@@ -64,7 +64,8 @@ builder.Services.AddKafka(configuration);
 builder.Host.UseSerilog();
 
 // Adding Hosted Services
-builder.Services.AddHostedService<KafKaConsumer>();
+// builder.Services.AddHostedService<KafKaConsumer>();
+builder.Services.AddHostedService<KafKaProductTopicConsumer>();
 
 // Adding external API Clients
 builder.Services.AddClients(configuration);

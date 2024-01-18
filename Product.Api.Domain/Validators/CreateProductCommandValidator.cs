@@ -21,7 +21,7 @@ namespace Product.Api.Domain.Validators
                 .WithMessage("Invalid Stock (must be greather than or equal to 0)");
             RuleFor(product => product.Price)
                 .GreaterThan(0)
-                .WithMessage("Invalid Stock (must be greather than 0)");
+                .WithMessage("Invalid Price (must be greather than 0)");
         }
     }
 }

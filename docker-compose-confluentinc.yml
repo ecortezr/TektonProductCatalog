@@ -3,50 +3,47 @@ version: "2.2"
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:${ZOOKEEPER_VERSION}
+    image: confluentinc/cp-zookeeper:${CONFLUENTINC_ZOOKEEPER_VERSION}
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
     ports:
       - ${ZOOKEEPER_PORT}:2181
-    volumes:
-      - "zookeeper_data:/bitnami"
-    environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
 
   kafka:
-    image: docker.io/bitnami/kafka:${KAFKA_VERSION}
-    ports:
-      - ${KAFKA_PORT}:29092
-    volumes:
-      - "kafka_data:/bitnami"
-    environment:
-      - KAFKA_CFG_NODE_ID=1
-      - KAFKA_KRAFT_CLUSTER_ID=1
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:29092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
-      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
-      - KAFKA_CFG_BROKER_RACK=r1
-      - KAFKA_CFG_DELETE_TOPIC_ENABLE=true
-      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
-      - KAFKA_CFG_SCHEMA_REGISTRY_URL=schema-registry:8081
-      # - KAFKA_CFG_LOG4J_ROOT_LOGLEVEL=INFO
-      - KAFKA_CFG_JMX_PORT=9991
+    image: confluentinc/cp-kafka:${CONFLUENTINC_KAFKA_VERSION}
     depends_on:
       - zookeeper
+    ports:
+      # Exposes 29092 for external connections to the broker
+      # Use kafka1:9092 for connections internal on the docker network
+      # See https://rmoff.net/2018/08/02/kafka-listeners-explained/ for details
+      - ${KAFKA_PORT}:29092
+    environment:
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_BROKER_ID=1
+      - KAFKA_BROKER_RACK=r1
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_DELETE_TOPIC_ENABLE=true
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_SCHEMA_REGISTRY_URL=schema-registry:8081
+      # - KAFKA_LOG4J_ROOT_LOGLEVEL=INFO
+      - KAFKA_JMX_PORT=9991
 
   schema-registry:
-    image: docker.io/bitnami/schema-registry:${SCHEMA_REGISTRY_VERSION}
+    image: confluentinc/cp-schema-registry:${CONFLUENTINC_SCHEMA_REGISTRY_VERSION}
     ports:
       - ${SCHEMA_REGISTRY_PORT}:8081
     depends_on:
-      - zookeeper
       - kafka
     environment:
-      - SCHEMA_REGISTRY_ADVERTISED_HOSTNAME=zookeeper
+      - SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL=zookeeper:2181
       - SCHEMA_REGISTRY_HOST_NAME=schema-registry
       - SCHEMA_REGISTRY_LISTENERS=http://0.0.0.0:8081
-      - SCHEMA_REGISTRY_KAFKA_BROKERS=PLAINTEXT://kafka:9092
+      - SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=PLAINTEXT://kafka:9092
 
   setup:
     image: docker.io/elastic/elasticsearch:${STACK_VERSION}

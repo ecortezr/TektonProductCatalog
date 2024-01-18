@@ -27,14 +27,14 @@ namespace Product.Api.HostedServices
 
             await base.StopAsync(cancellationToken);
         }
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // _ = Task.Run(() => StartConsumer(stoppingToken), stoppingToken);
-            // return Task.CompletedTask;
-            await StartConsumer(stoppingToken);
+            Task.Run(() => StartConsumerAsync(stoppingToken), stoppingToken);
+            return Task.CompletedTask;
+            // await StartConsumer(stoppingToken);
         }
 
-        private async Task StartConsumer(CancellationToken stoppingToken)
+        private async Task StartConsumerAsync(CancellationToken stoppingToken)
         {
             using var consumer = new ConsumerBuilder<Ignore, string>(_consumerConfig).Build();
             consumer.Subscribe("my-basic-topic");

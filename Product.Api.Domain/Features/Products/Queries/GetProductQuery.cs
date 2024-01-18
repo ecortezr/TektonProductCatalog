@@ -18,7 +18,7 @@ namespace Product.Api.Domain.Features.Products.Queries
         }
     }
 
-    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProductQueryResponse>
+    public class GetProductQueryHandler : IRequestHandler<GetProductQuery, GetProductQueryResponse?>
     {
         private readonly IProductRepository _context;
         private readonly IAppCache _cache;
@@ -40,6 +40,9 @@ namespace Product.Api.Domain.Features.Products.Queries
 
         public async Task<GetProductQueryResponse?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
+            var response = await _elasticClient.GetAsync<Entities.Product>(request.ProductId, ct: cancellationToken);
+            var product = response.Source;
+            /*
             var result = await _elasticClient.SearchAsync<Entities.Product>(s =>
                 s.Query(q =>
                     q.QueryString(d =>
@@ -50,7 +53,7 @@ namespace Product.Api.Domain.Features.Products.Queries
             );
 
             var product = result.Documents.ToList().FirstOrDefault();
-
+            */
 
             /*
             var product = await _context.Set<Entities.Product>()
