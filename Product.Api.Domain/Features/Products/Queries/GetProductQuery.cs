@@ -41,24 +41,15 @@ namespace Product.Api.Domain.Features.Products.Queries
         public async Task<GetProductQueryResponse?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
             var response = await _elasticClient.GetAsync<Entities.Product>(request.ProductId, ct: cancellationToken);
+            if (!response.IsValid)
+            {
+                Console.WriteLine($"debugInfo: {response.DebugInformation}");
+                Console.WriteLine($"error: {response.ServerError.Error}");
+
+                return null;
+            }
+
             var product = response.Source;
-            /*
-            var result = await _elasticClient.SearchAsync<Entities.Product>(s =>
-                s.Query(q =>
-                    q.QueryString(d =>
-                        d.Query('*' + "product 1" + '*')
-                    )
-                )
-                    .Size(5000)
-            );
-
-            var product = result.Documents.ToList().FirstOrDefault();
-            */
-
-            /*
-            var product = await _context.Set<Entities.Product>()
-                .FirstOrDefaultAsync(x => x.ProductId == request.ProductId, cancellationToken);
-            */
             if (product is null)
             {
                 return null;
